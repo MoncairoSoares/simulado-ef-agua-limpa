@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulado Prof. Educação Física | Água Limpa/GO</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1b2430;--mut:#5d6b7c;--line:#e3e7ec;--pri:#0f6bdc;--pri2:#e8f1fd;--ok:#14803c;--okbg:#e7f6ec;--bad:#b42318;--badbg:#fdecea;--warn:#8a5a00;--warnbg:#fff4d6}
+@media (prefers-color-scheme:dark){:root{--bg:#10151c;--card:#18202a;--ink:#e8edf3;--mut:#9aa7b6;--line:#2a3441;--pri:#5aa2ff;--pri2:#1b2c44;--ok:#4cc27a;--okbg:#14301f;--bad:#ff8a80;--badbg:#3a1c1a;--warn:#ffcf66;--warnbg:#3a2f12}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;flex-wrap:wrap}
+.brand{font-weight:700}
+.brand small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{background:none;border:1px solid var(--line);color:var(--ink);padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:14px}
+nav button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+main{padding:20px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:16px}
+h1{font-size:22px;margin:0 0 6px}h2{font-size:18px;margin:0 0 10px}h3{font-size:16px;margin:14px 0 6px}
+.mut{color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left}
+th{background:var(--pri2)}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:9px;padding:11px 18px;font:inherit;font-weight:600;cursor:pointer}
+.btn.sec{background:none;color:var(--pri);border:1px solid var(--pri)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.alert{background:var(--warnbg);color:var(--warn);border-radius:10px;padding:10px 14px;font-size:14px;margin:10px 0}
+details{border:1px solid var(--line);border-radius:10px;margin:8px 0;background:var(--card)}
+summary{cursor:pointer;padding:11px 14px;font-weight:600}
+details .in{padding:0 16px 12px}
+details ul{margin:6px 0 6px 18px;padding:0}
+details li{margin:3px 0}
+.tag{display:inline-block;background:var(--pri2);color:var(--pri);border-radius:6px;padding:1px 8px;font-size:12px;margin-right:6px}
+.bar{position:sticky;top:57px;z-index:15;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:14px}
+.nav{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.nav a{width:30px;height:28px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:6px;font-size:12px;text-decoration:none;color:var(--ink)}
+.nav a.done{background:var(--pri);color:#fff;border-color:var(--pri)}
+.disc{font-weight:700;color:var(--pri);margin:22px 0 8px;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:12px}
+.q .n{font-weight:700;color:var(--mut);font-size:13px;margin-bottom:4px}
+.q .t{margin-bottom:10px}
+.opt{display:flex;gap:10px;width:100%;text-align:left;background:none;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px 12px;margin:6px 0;cursor:pointer;font:inherit}
+.opt b{min-width:20px}
+.opt:hover{border-color:var(--pri)}
+.opt.sel{border-color:var(--pri);background:var(--pri2)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--bad);background:var(--badbg)}
+.opt:disabled{cursor:default}
+.exp{margin-top:8px;padding:9px 12px;border-radius:9px;background:var(--pri2);font-size:14px}
+.score{font-size:40px;font-weight:800}
+.pill{display:inline-block;padding:3px 12px;border-radius:99px;font-weight:700;font-size:14px}
+.pill.ok{background:var(--okbg);color:var(--ok)}.pill.bad{background:var(--badbg);color:var(--bad)}
+select{font:inherit;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+.hide{display:none}
+@media(max-width:560px){.bar{top:100px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="top">
+  <div class="brand">Simulado Prof. Educação Física<small>Pref. Água Limpa/GO · Edital 001/2026 · Banca Fronte</small></div>
+  <nav>
+    <button data-v="edital" class="on">Edital</button>
+    <button data-v="guia">Guia de estudo</button>
+    <button data-v="treino">Treino por tópico</button>
+    <button data-v="simulado">Simulado</button>
+  </nav></div></div></header>
+
+<main class="wrap">
+
+<!-- EDITAL -->
+<section id="v-edital">
+  <div class="card">
+    <h1>O que a banca vai cobrar</h1>
+    <p class="mut">Dados extraídos do Edital de Abertura 001/2026 e das retificações 2, 3 e 4 (Fronte Concursos e Projetos). Confira sempre o edital oficial.</p>
+    <table>
+      <tr><th>Cargo</th><td>Professor(a) de Educação Física / Educador(a) Físico, 40 horas</td></tr>
+      <tr><th>Requisito</th><td>Superior completo em Educação Física e registro no CREF</td></tr>
+      <tr><th>Vencimento</th><td>R$ 3.847,97 (corrigido na Retificação 3; o edital original dizia R$ 3.435,42)</td></tr>
+      <tr><th>Taxa de inscrição</th><td>R$ 100,00 · inscrições até 19/10/2026</td></tr>
+      <tr><th>Tipo de prova</th><td>Objetiva, múltipla escolha, 4 alternativas (A a D), 3 horas, eliminatória e classificatória</td></tr>
+      <tr><th>Títulos</th><td>Prova de títulos com no máximo 20 pontos (conforme edital)</td></tr>
+    </table>
+    <h3>Estrutura da prova (nível superior)</h3>
+    <table>
+      <tr><th>Disciplina</th><th>Questões</th><th>Valor de cada</th><th>Total</th></tr>
+      <tr><td>Língua Portuguesa</td><td>10</td><td>2,0</td><td>20</td></tr>
+      <tr><td>Matemática</td><td>10</td><td>2,0</td><td>20</td></tr>
+      <tr><td>Conhecimentos Específicos</td><td>20</td><td>3,0</td><td>60</td></tr>
+      <tr><th>Total</th><th>40</th><th></th><th>100</th></tr>
+    </table>
+    <div class="alert">O item 8.1 do edital cita "50 questões" para nível superior, mas o quadro da própria prova soma 40 questões (10 + 10 + 20) valendo 100 pontos. O simulado segue o quadro (40 questões). Se a banca confirmar outra divisão, o guia continua valendo.</div>
+    <h3>Regras que eliminam</h3>
+    <ul>
+      <li>Nota mínima: <b>50 pontos</b> na prova objetiva.</li>
+      <li>Quem <b>zerar qualquer disciplina</b> é eliminado.</li>
+      <li>Desempate: maior pontuação em Conhecimentos Específicos, depois acertos em Português, depois em Matemática.</li>
+      <li>Marcação: caneta, sem rasura, uma só alternativa. Marcação dupla, em branco ou a lápis vale zero.</li>
+    </ul>
+    <h3>Conteúdo programático: Conhecimentos Específicos (literal do edital)</h3>
+    <p>Código de Ética profissional e Resoluções vigentes. Histórico da Educação Física. Educação Física enquanto linguagem. Construindo competências e habilidades em Educação Física. Avaliação em Educação Física. Educação Física e sociedade. Fundamentos didático-pedagógicos da Educação Física. Atividade física e saúde. Crescimento e desenvolvimento. Aspectos da aprendizagem motora. Aspectos sócio-históricos da Educação Física. Política educacional e Educação Física. Cultura e Educação Física. Aspectos da competição e cooperação no cenário escolar. Práticas Corporais. Cultura corporal e cultura corporal do movimento.</p>
+    <div class="row"><button class="btn" onclick="go('guia')">Ver guia de estudo</button><button class="btn sec" onclick="go('simulado')">Fazer simulado</button></div>
+  </div>
+</section>
+
+<!-- GUIA -->
+<section id="v-guia" class="hide">
+  <div class="card"><h1>Guia de estudo objetivo</h1>
+  <p class="mut">Resumo do que mais cai, na ordem do edital. Estude, depois valide no Treino por tópico.</p></div>
+  <div id="guiaBody"></div>
+</section>
+
+<!-- TREINO -->
+<section id="v-treino" class="hide">
+  <div class="card">
+    <h1>Treino por tópico</h1>
+    <p class="mut">Feedback imediato a cada resposta. Use para fixar o guia antes do simulado.</p>
+    <div class="row">
+      <select id="trTopic"></select>
+      <select id="trQty"><option>5</option><option selected>10</option><option>15</option></select>
+      <button class="btn" onclick="startTreino()">Gerar questões</button>
+    </div>
+  </div>
+  <div id="trBody"></div>
+</section>
+
+<!-- SIMULADO -->
+<section id="v-simulado" class="hide">
+  <div id="simIntro" class="card">
+    <h1>Simulado no formato da prova</h1>
+    <p>40 questões: 10 Português, 10 Matemática e 20 Específicos de Educação Física. Pesos 2,0, 2,0 e 3,0. Nota mínima 50 e nenhuma disciplina zerada. Tempo de referência: 3 horas.</p>
+    <p class="mut">Cada prova é sorteada do banco de questões, com alternativas embaralhadas. Matemática é gerada com números novos a cada vez. O sistema evita repetir questões que você já viu enquanto houver inéditas.</p>
+    <div class="row"><button class="btn" onclick="startSim()">Iniciar nova prova</button><span id="seenInfo" class="mut"></span></div>
+  </div>
+  <div id="simBody"></div>
+</section>
+
+</main>
+
+<script>
+/* ============ utilidades ============ */
+const $=s=>document.querySelector(s);
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const gcd=(a,b)=>b?gcd(b,a%b):a;
+const lcm=(a,b)=>a/gcd(a,b)*b;
+const fmt=n=>(Math.round(n*100)/100).toLocaleString('pt-BR');
+const money=n=>'R$ '+n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const L='ABCD';
+
+/* ============ navegação ============ */
+function go(v){
+  document.querySelectorAll('main>section').forEach(s=>s.classList.add('hide'));
+  $('#v-'+v).classList.remove('hide');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.v));
+
+/* ============ BANCO: LÍNGUA PORTUGUESA ============ */
+/* P(tópico, enunciado, correta, [erradas], explicação) */
+const P=(t,q,r,w,e)=>({d:'pt',t,q,r,w,e});
+const PT=[
+P('Crase','Assinale a alternativa em que o acento grave (crase) é obrigatório.','Voltamos à escola depois do treino.',['Refiro-me a ela com carinho.','Fomos a pé até a quadra.','Ele começou a correr.'],'Voltar (a) + a escola: regência de "voltar a" exige preposição e o substantivo feminino pede artigo, logo há crase. Antes de pronome pessoal, verbo ou palavra masculina não há crase.'),
+P('Crase','Assinale a frase em que o uso da crase está CORRETO.','Entreguei o documento à diretora.',['Fui à Salvador no verão.','Ela começou a falar à todos.','Estamos dispostos à colaborar.'],'Entregar algo A alguém + A diretora = à diretora. Não há crase antes de "todos" (palavra masculina/plural genérica) nem antes de verbo. Salvador não admite artigo, então "a Salvador".'),
+P('Concordância verbal','Assinale a alternativa correta quanto à concordância verbal.','Faz dois anos que moro aqui.',['Fazem dois anos que moro aqui.','Houveram muitos problemas na aula.','Existe muitas dúvidas sobre o tema.'],'Fazer indicando tempo é impessoal e fica no singular. Haver no sentido de existir também é impessoal ("houve"). "Existem muitas dúvidas": existir concorda com o sujeito.'),
+P('Concordância nominal','Assinale a frase correta quanto à concordância nominal.','As meninas ficaram meio cansadas.',['Ela mesmo resolveu o problema.','Seguem anexo as fichas dos alunos.','Os atletas estavam bastantes cansados.'],'"Meio" como advérbio (= um pouco) é invariável. Corretas seriam: "ela mesma", "seguem anexas" e "bastante cansados" (advérbio, invariável).'),
+P('Regência verbal','Assinale a frase correta quanto à regência do verbo "assistir" (no sentido de ver).','Assistimos ao jogo ontem à noite.',['Assistimos o jogo ontem à noite.','Assistimos no jogo ontem à noite.','Assistimos de o jogo ontem à noite.'],'Assistir no sentido de ver, presenciar é transitivo indireto, com preposição "a".'),
+P('Regência verbal','Assinale a alternativa em que o verbo "preferir" está regido corretamente.','Prefiro correr a nadar.',['Prefiro mais correr do que nadar.','Prefiro correr do que nadar.','Prefiro correr que nadar.'],'Preferir algo A outra coisa. Não se usa "mais", "do que" nem "que" com preferir.'),
+P('Acentuação gráfica','Em qual alternativa as três palavras recebem acento pela regra das oxítonas terminadas em a, e, o (seguidas ou não de s)?','café, sofá, avô',['saúde, baú, país','lápis, álbum, órfão','árvore, médico, pássaro'],'Café, sofá e avô são oxítonas terminadas em e, a, o. Saúde, baú, país: hiato. Lápis, álbum, órfão: paroxítonas. Árvore, médico, pássaro: proparoxítonas.'),
+P('Funções da linguagem','No texto "Pare de fumar! Cuide da sua saúde!", predomina a função da linguagem','conativa (apelativa), pois busca influenciar o leitor.',['referencial, pois informa fatos do mundo.','emotiva, pois expressa sentimentos do emissor.','poética, pois valoriza a forma da mensagem.'],'Imperativo e vocativo indicam foco no receptor: função conativa.'),
+P('Figuras de linguagem','Em "A torcida é um mar de bandeiras", ocorre a figura de linguagem chamada','metáfora',['metonímia','ironia','eufemismo'],'Comparação implícita, sem conectivo, entre torcida e mar: metáfora.'),
+P('Figuras de linguagem','Em "Li Machado de Assis durante as férias", ocorre','metonímia (autor pela obra)',['metáfora','pleonasmo','antítese'],'O autor é citado no lugar de sua obra: metonímia.'),
+P('Semântica','O sinônimo mais adequado de "profícuo" é','vantajoso, útil',['inútil','demorado','perigoso'],'Profícuo significa que traz proveito, útil, vantajoso.'),
+P('Semântica','A frase "Pedro disse a João que ele foi aprovado" apresenta ambiguidade porque','o pronome "ele" pode se referir a Pedro ou a João.',['falta o verbo da oração principal.','há erro de concordância verbal.','a oração é interrogativa.'],'A ambiguidade (anfibologia) vem de a referência do pronome não estar clara.'),
+P('Coesão','Em "Ele treinou muito, portanto venceu a prova", o conectivo "portanto" estabelece relação de','conclusão',['oposição','concessão','causa'],'Portanto introduz consequência/conclusão do que foi dito antes.'),
+P('Coesão','Em "Embora estivesse cansado, terminou o treino", a conjunção "embora" indica','concessão',['causa','condição','finalidade'],'Embora admite um fato contrário que não impede o resultado: concessão.'),
+P('Tipos de texto','Um texto que apresenta verbos no imperativo e sequência de ações ("Misture, leve ao forno, aguarde") é predominantemente','injuntivo (instrucional)',['narrativo','descritivo','argumentativo'],'Texto injuntivo orienta, instrui, comanda ações: receitas, manuais, bulas.'),
+P('Variação linguística','Quando o falante adapta sua linguagem à situação de uso (formal em uma reunião, informal com amigos), temos variação','diafásica (situacional)',['diatópica (regional)','diastrática (social)','diacrônica (histórica)'],'Diatópica = lugar; diastrática = grupo social; diacrônica = tempo; diafásica = situação comunicativa.'),
+P('Colocação pronominal','Assinale a frase com colocação pronominal correta, segundo a norma-padrão.','Nunca me disseram isso.',['Me avise quando chegar.','Nunca disseram-me isso.','Avisarei-te amanhã.'],'Advérbio de negação atrai o pronome (próclise). Não se inicia frase com pronome átono e, no futuro do presente, usa-se próclise ou mesóclise ("avisar-te-ei").'),
+P('Pontuação','Assinale a alternativa em que a vírgula está empregada INCORRETAMENTE.','O professor, entregou os materiais.',['Os alunos, cansados, saíram da quadra.','Quando chegou, todos já tinham saído.','Maria, venha cá.'],'Não se separa sujeito do verbo com vírgula isolada.'),
+P('Classes de palavras','Na frase "Ele correu rapidamente", a palavra "rapidamente" é','advérbio de modo',['adjetivo','substantivo','preposição'],'Modifica o verbo indicando como a ação ocorreu: advérbio de modo.'),
+P('Formação de palavras','Assinale a palavra formada por derivação parassintética.','entardecer',['infelizmente','guarda-chuva','desfazer'],'Entardecer = en + tarde + ecer (prefixo e sufixo simultâneos). Guarda-chuva é composição; desfazer é derivação prefixal.'),
+P('Ortografia','Assinale a grafia correta.','exceção',['excessão','esceção','ecessão'],'Exceção, de exceto: grafia com "xc" e "ç".'),
+P('Gêneros textuais','O gênero textual que expressa a opinião fundamentada de um jornal sobre um tema é','editorial',['receita','bula','convite'],'O editorial é argumentativo e traz o posicionamento do veículo.'),
+P('Interpretação de texto','"A atividade física regular reduz o risco de doenças cardiovasculares, melhora o humor e favorece o sono. Entretanto, grande parte da população brasileira ainda é sedentária." Com base no texto, é correto afirmar que','apesar dos benefícios, muitos brasileiros continuam sedentários.',['a atividade física não traz benefícios ao humor.','a maior parte dos brasileiros é fisicamente ativa.','o sono piora com a prática de exercícios.'],'"Entretanto" marca o contraste entre benefícios comprovados e sedentarismo ainda alto.'),
+P('Interpretação de texto','"Embora a escola tenha investido em novos materiais, os alunos continuam sem acesso a uma quadra coberta." É possível inferir que','houve investimento, mas a falta da quadra coberta persiste.',['a escola já possui quadra coberta.','nada foi investido pela escola.','os alunos recusam a quadra coberta.'],'A concessiva reconhece o investimento, e a principal afirma que a carência continua.'),
+P('Linguagem verbal e não verbal','Uma placa de trânsito com o desenho de uma pessoa atravessando a faixa, sem nenhuma palavra, é exemplo de linguagem','não verbal',['verbal','mista com predominância verbal','apenas escrita'],'Comunicação por imagem, sem palavras: linguagem não verbal.'),
+P('Estrutura da oração','Em "Havia muitos alunos na quadra", o sujeito é','inexistente (oração sem sujeito)',['"muitos alunos"','indeterminado','oculto'],'Haver no sentido de existir é impessoal: a oração não tem sujeito, e "muitos alunos" é objeto direto.'),
+P('Verbos','Complete: "Se eu ____ tempo, farei o treino hoje."','tiver',['tivesse','tinha','tenho'],'Se + futuro do subjuntivo + futuro do presente: "se eu tiver... farei".'),
+P('Pronomes relativos','Complete: "O livro ____ autor é famoso foi doado à escola."','cujo',['que','onde','o qual'],'Cujo indica posse e concorda com o termo posseado (autor): "cujo autor".'),
+P('Elementos de textualidade','A coerência textual é caracterizada principalmente','pela relação lógica de sentido entre as ideias do texto.',['pelo uso de muitos conectivos.','pelo uso de rimas e figuras.','pela quantidade de parágrafos.'],'Coerência é a lógica de sentido; coesão é a articulação linguística (conectivos, pronomes, etc.).'),
+P('Tipos de texto','O texto que apresenta uma tese e a defende com argumentos, buscando convencer o leitor, é','argumentativo',['descritivo','narrativo','injuntivo'],'Tese + argumentos + persuasão = tipo argumentativo.'),
+P('Semântica','As palavras "alto" e "baixo" mantêm entre si relação de','antonímia',['sinonímia','polissemia','paronímia'],'Antônimos têm sentidos opostos.')
+];
+
+/* ============ BANCO: CONHECIMENTOS ESPECÍFICOS ============ */
+const E=(t,q,r,w,e)=>({d:'esp',t,q,r,w,e});
+const T_ESP={
+ etica:'Ética e legislação profissional',
+ hist:'Histórico e sócio-história',
+ abord:'Abordagens pedagógicas',
+ bncc:'Linguagem, competências e BNCC',
+ pol:'Política educacional e legislação',
+ saude:'Atividade física e saúde',
+ cresc:'Crescimento e desenvolvimento',
+ motora:'Aprendizagem motora',
+ aval:'Avaliação e planejamento',
+ cult:'Cultura corporal e práticas corporais',
+ comp:'Competição e cooperação'
+};
+const ESP=[
+// ÉTICA
+E('etica','A Lei nº 9.696/1998 regulamenta a profissão de Educação Física e','cria o Conselho Federal (CONFEF) e os Conselhos Regionais (CREFs).',['institui a Base Nacional Comum Curricular.','estabelece as diretrizes e bases da educação nacional.','dispõe sobre o Estatuto da Criança e do Adolescente.'],'Lei 9.696/1998: regulamenta a profissão e cria CONFEF/CREFs. LDB é a Lei 9.394/1996; ECA é a Lei 8.069/1990.'),
+E('etica','Segundo a Lei nº 9.696/1998, o exercício das atividades de Educação Física e a designação de Profissional de Educação Física são prerrogativas dos profissionais','regularmente registrados nos Conselhos Regionais de Educação Física.',['apenas com formação em esportes de alto rendimento.','que sejam atletas profissionais aposentados.','autorizados exclusivamente pelas secretarias de esporte.'],'O registro no CREF é condição para o exercício, e é exigido também pelo edital.'),
+E('etica','O Código de Ética do Profissional de Educação Física do Sistema CONFEF/CREFs foi instituído pela Resolução CONFEF nº','307/2015',['9.696/1998','8.069/1990','13.146/2015'],'Resolução CONFEF 307/2015 é o Código de Ética. Os outros números são leis federais.'),
+E('etica','De acordo com os princípios éticos da profissão, o Profissional de Educação Física deve atuar','priorizando o bem-estar e a segurança dos beneficiários, com respeito à dignidade e sem discriminação.',['priorizando o interesse comercial do contratante.','buscando vitória a qualquer custo em competições.','selecionando apenas os alunos mais habilidosos.'],'Respeito à dignidade humana, não discriminação, segurança e qualidade técnica são pilares do Código de Ética.'),
+E('etica','O sistema responsável por fiscalizar o exercício profissional em Educação Física é formado','pelo CONFEF e pelos CREFs.',['pelo MEC e pelas secretarias municipais de educação.','pelo CNE e pelo INEP.','pelo CBC e pelo COB.'],'CONFEF (federal) e CREFs (regionais) fiscalizam, orientam e disciplinam a profissão.'),
+// HISTÓRIA
+E('hist','A concepção higienista da Educação Física, forte no século XIX e início do XX, valorizava','hábitos de higiene, saúde e formação de corpos fortes e saudáveis.',['o rendimento esportivo e a detecção de talentos.','a crítica à sociedade capitalista.','a livre expressão corporal e a criatividade.'],'No higienismo a EF servia à saúde pública e à educação do corpo (inclusive com viés eugênico).'),
+E('hist','A concepção militarista da Educação Física visava principalmente','formar o cidadão-soldado, com disciplina, obediência e preparo físico.',['desenvolver o pensamento crítico dos alunos.','promover a recreação e o lazer.','estimular a competição esportiva escolar.'],'Militarismo: patriotismo, hierarquia, disciplina, preparo para a defesa da pátria.'),
+E('hist','Os métodos ginásticos europeus (alemão, sueco e francês) tiveram em comum','a ênfase em exercícios sistematizados voltados à formação e disciplina do corpo.',['o foco na ludicidade e no jogo espontâneo.','a abordagem crítico-superadora.','a rejeição de qualquer finalidade militar ou higiênica.'],'Os métodos ginásticos tinham finalidade corretiva, higiênica e disciplinar, e influenciaram a EF brasileira.'),
+E('hist','Na década de 1970, durante o regime militar, a Educação Física escolar foi marcada pelo modelo','esportivista (tecnicista), com ênfase no rendimento e na detecção de talentos.',['higienista, com foco em eugenia.','crítico-emancipatório, centrado na linguagem.','construtivista, centrado no jogo simbólico.'],'Esporte de rendimento como conteúdo hegemônico: "esporte é Educação Física".'),
+E('hist','O chamado movimento renovador da Educação Física, a partir dos anos 1980, caracterizou-se','pela crítica ao modelo tecnicista e esportivista e pelo surgimento de novas abordagens pedagógicas.',['pela volta do modelo militarista.','pela exclusão do esporte da escola.','pela criação da Lei 9.696/1998.'],'Surgem abordagens desenvolvimentista, construtivista, crítico-superadora, crítico-emancipatória, entre outras.'),
+E('hist','Os Jogos Olímpicos da Antiguidade eram realizados em','Olímpia, na Grécia.',['Atenas, em 1896.','Roma, no Coliseu.','Esparta, como treino militar apenas.'],'Os jogos antigos ocorriam em Olímpia. Os modernos começaram em Atenas, em 1896, por iniciativa de Pierre de Coubertin.'),
+E('hist','O responsável pela retomada dos Jogos Olímpicos na era moderna, em 1896, foi','Pierre de Coubertin',['Rui Barbosa','Paulo Freire','Jean Piaget'],'Barão Pierre de Coubertin idealizou os Jogos Olímpicos modernos.'),
+E('hist','No Brasil, Rui Barbosa, em parecer de 1882, destacou-se por','defender a inclusão da ginástica no currículo escolar.',['criar o Conselho Federal de Educação Física.','propor o esporte de alto rendimento nas escolas.','extinguir a ginástica das escolas.'],'O parecer de Rui Barbosa (1882) foi marco da defesa da ginástica na escola brasileira.'),
+// ABORDAGENS
+E('abord','A abordagem desenvolvimentista (Tani e colaboradores) tem como eixo','o desenvolvimento motor e as habilidades motoras básicas, respeitando as fases da criança.',['a luta de classes e a cultura corporal.','a participação dos alunos nas decisões das aulas.','a promoção de estilo de vida ativo para todos.'],'A abordagem desenvolvimentista baseia-se em desenvolvimento motor e aprendizagem motora.'),
+E('abord','A abordagem psicomotora (Le Boulch) defende o movimento como','meio para desenvolver aspectos cognitivos, afetivos e motores da criança.',['fim em si mesmo, voltado ao rendimento esportivo.','instrumento de formação militar.','conteúdo exclusivo de saúde pública.'],'Psicomotricidade: educação "pelo" movimento, integrando funções motoras, cognitivas e afetivas.'),
+E('abord','A abordagem construtivista-interacionista, ligada a João Batista Freire, valoriza principalmente','o jogo e a brincadeira como construção do conhecimento pela criança.',['a técnica esportiva e a repetição de gestos.','o treinamento físico sistemático.','os métodos ginásticos europeus.'],'Inspirada em Piaget: a criança constrói conhecimento na interação com o meio, sobretudo pelo jogo.'),
+E('abord','A obra "Metodologia do Ensino de Educação Física" (Coletivo de Autores, 1992) fundamenta a abordagem','crítico-superadora, que adota o conceito de cultura corporal.',['desenvolvimentista.','psicomotora.','saúde renovada.'],'Crítico-superadora: base marxista, cultura corporal, conteúdos como jogo, esporte, ginástica, dança, luta.'),
+E('abord','A abordagem crítico-emancipatória, de Elenor Kunz, destaca','o "se-movimentar" do sujeito e a emancipação por meio da linguagem e da reflexão crítica.',['a aptidão física relacionada à saúde.','o rendimento e a seleção de talentos.','os métodos ginásticos alemães.'],'Kunz: o aluno como sujeito, ensino pela comunicação, transcendência de limites.'),
+E('abord','A abordagem da saúde renovada propõe que a Educação Física escolar','promova estilo de vida ativo e aptidão física relacionada à saúde, para todos os alunos.',['selecione os alunos mais aptos para equipes.','reproduza o treinamento esportivo de elite.','substitua o conteúdo de jogos por testes de rendimento.'],'Autores como Guedes, Guedes e Nahas: hábitos ativos ao longo da vida, sem seletividade.'),
+E('abord','Na abordagem das aulas abertas (Hildebrandt e Laging), o aspecto central é','a participação dos alunos nas decisões sobre objetivos, conteúdos e formas das aulas.',['a aula rigidamente dirigida pelo professor.','o treino de gestos técnicos padronizados.','a avaliação por testes de aptidão.'],'Aulas abertas: concertação entre professor e alunos, com maior autonomia dos estudantes.'),
+E('abord','Os Parâmetros Curriculares Nacionais (PCN) de Educação Física adotam a ideia de','cultura corporal de movimento, com princípios de inclusão e diversidade.',['exclusivamente o esporte de rendimento.','apenas atividades de aptidão física.','educação militarizada do corpo.'],'Os PCN organizam os conteúdos em esportes, jogos, lutas e ginásticas; atividades rítmicas e expressivas; e conhecimentos sobre o corpo.'),
+// BNCC / LINGUAGEM
+E('bncc','Na Base Nacional Comum Curricular (BNCC), a Educação Física integra a área de','Linguagens',['Ciências da Natureza','Ciências Humanas','Matemática'],'Linguagens reúne Língua Portuguesa, Arte, Educação Física e Língua Inglesa.'),
+E('bncc','Entender a Educação Física "enquanto linguagem" significa reconhecer que','as práticas corporais comunicam significados culturais, como gestos, jogos e danças.',['o aluno deve apenas decorar regras esportivas.','a disciplina serve apenas para o desenvolvimento físico.','a Educação Física não tem relação com cultura.'],'Linguagem corporal: expressão e comunicação de sentidos e valores pelas práticas corporais.'),
+E('bncc','Qual das opções NÃO é unidade temática da Educação Física no Ensino Fundamental, segundo a BNCC?','Fisiologia do exercício',['Danças','Lutas','Práticas corporais de aventura'],'As seis unidades são: Brincadeiras e jogos, Esportes, Ginásticas, Danças, Lutas e Práticas corporais de aventura.'),
+E('bncc','Na BNCC, os esportes são classificados por critérios de lógica interna. O 100 metros rasos é exemplo de esporte de','marca',['precisão','invasão ou territorial','rede/quadra dividida'],'Marca: resultado medido em tempo, distância ou peso (atletismo, natação). Precisão: bocha, golfe, boliche. Invasão: basquete, futsal.'),
+E('bncc','O voleibol é classificado, segundo a BNCC, como esporte de','rede/quadra dividida ou parede',['invasão ou territorial','campo e taco','técnico-combinatório'],'Voleibol, tênis e badminton são de rede/quadra dividida. Campo e taco: beisebol, críquete.'),
+E('bncc','A unidade temática "Ginásticas" da BNCC é organizada em','ginástica geral, ginástica de condicionamento físico e ginástica de conscientização corporal.',['ginástica artística, rítmica e acrobática apenas.','ginástica laboral e ginástica olímpica apenas.','ginástica militar, sueca e francesa.'],'A BNCC propõe três tipos: geral, de condicionamento físico e de conscientização corporal.'),
+E('bncc','O skate, o parkour e o slackline em espaços da cidade são exemplos de','práticas corporais de aventura urbanas.',['esportes de combate.','danças de salão.','brincadeiras e jogos populares.'],'Práticas de aventura se dividem em urbanas (skate, parkour) e na natureza (orientação, arvorismo, trilha).'),
+E('bncc','Na BNCC, o termo "competência" é definido como','a mobilização de conhecimentos, habilidades, atitudes e valores para resolver demandas da vida cotidiana.',['a capacidade de vencer competições.','o conjunto de conteúdos decorados.','a nota obtida em avaliações.'],'Definição da própria BNCC, que orienta o ensino por competências e habilidades.'),
+// POLÍTICA
+E('pol','De acordo com a LDB (Lei 9.394/1996), a Educação Física, integrada à proposta pedagógica da escola, é componente curricular','obrigatório da educação básica.',['optativo em todas as etapas.','exclusivo do ensino médio.','restrito às escolas particulares.'],'LDB, art. 26, § 3º: componente curricular obrigatório da educação básica, ajustado às faixas etárias e condições da população escolar.'),
+E('pol','Segundo a LDB, a prática da Educação Física é facultativa ao aluno que','cumpra jornada de trabalho igual ou superior a seis horas.',['não goste da disciplina.','seja menor de 10 anos.','tenha preferência por outra atividade esportiva.'],'Também é facultativa ao maior de 30 anos, a quem preste serviço militar inicial e a quem tenha prole, entre outras hipóteses legais.'),
+E('pol','A Constituição Federal (art. 217) estabelece que é dever do Estado','fomentar práticas desportivas formais e não formais, como direito de cada um.',['proibir práticas desportivas amadoras.','transferir à iniciativa privada todo o fomento ao esporte.','apoiar apenas o desporto de alto rendimento.'],'Art. 217 da CF/88: o esporte é direito de cada um, e o Estado deve fomentar práticas formais e não formais.'),
+E('pol','Segundo a Lei Pelé (Lei 9.615/1998), o desporto praticado nos sistemas de ensino, evitando seletividade e hipercompetitividade, é o desporto','educacional',['de rendimento','profissional','de alto nível'],'Desporto educacional busca o desenvolvimento integral e a formação para a cidadania e o lazer.'),
+E('pol','A Educação Física inclusiva busca','adaptar regras, materiais e espaços para garantir a participação de todos os alunos.',['dispensar alunos com deficiência das aulas.','formar turmas apenas por nível de habilidade.','aplicar a mesma tarefa a todos sem adaptação.'],'Inclusão exige adaptação, apoiada pela Lei Brasileira de Inclusão (Lei 13.146/2015) e pela política de educação especial inclusiva.'),
+E('pol','O desporto de participação, conforme a Lei Pelé, é aquele praticado de modo voluntário e que tem por finalidade','integração social, promoção da saúde e do lazer.',['obter resultados profissionais e contratos.','selecionar atletas para a seleção nacional.','substituir as aulas curriculares de Educação Física.'],'Participação: voluntário, com foco em lazer, saúde, integração e preservação ambiental.'),
+// SAÚDE
+E('saude','Atividade física é definida como qualquer movimento corporal produzido pela musculatura esquelética que resulte em','gasto energético acima dos níveis de repouso.',['aumento da massa corporal apenas.','treinamento esportivo planejado e estruturado.','competição organizada.'],'Atividade física = movimento com gasto energético acima do repouso. Exercício físico é a atividade planejada, estruturada e repetitiva com objetivo.'),
+E('saude','A diferença entre atividade física e exercício físico é que o exercício físico','é planejado, estruturado e repetitivo, com objetivo definido.',['não envolve gasto de energia.','é sempre competitivo.','só ocorre em academias.'],'Caminhar até a escola é atividade física; um treino de corrida planejado é exercício.'),
+E('saude','As Diretrizes da OMS (2020) recomendam a adultos, por semana,','150 a 300 minutos de atividade aeróbica moderada (ou 75 a 150 vigorosa).',['30 minutos no total.','60 minutos por dia de atividade vigorosa.','nenhuma atividade, se forem saudáveis.'],'Adultos: 150-300 min moderada ou 75-150 vigorosa, mais fortalecimento muscular 2 ou mais dias.'),
+E('saude','As recomendações da OMS para crianças e adolescentes indicam, em média,','60 minutos por dia de atividade física moderada a vigorosa.',['15 minutos por dia.','150 minutos por semana no total.','apenas atividades de força, 1 dia por semana.'],'Crianças e adolescentes: média de 60 min/dia, predominantemente aeróbica.'),
+E('saude','Para pessoas idosas, a OMS recomenda atividades multicomponentes, com ênfase em','equilíbrio funcional e força, para prevenção de quedas, 3 ou mais dias por semana.',['apenas alongamento, 1 vez por semana.','somente corridas de alta intensidade.','repouso absoluto.'],'Idosos: aeróbico + força + equilíbrio, com atenção à prevenção de quedas.'),
+E('saude','Qual capacidade NÃO faz parte da aptidão física relacionada à saúde?','Velocidade',['Flexibilidade','Composição corporal','Aptidão cardiorrespiratória'],'Saúde: aptidão cardiorrespiratória, força/resistência muscular, flexibilidade e composição corporal. Velocidade e agilidade são ligadas ao desempenho.'),
+E('saude','O IMC de uma pessoa com 70 kg e 1,75 m de altura é de aproximadamente 22,9 kg/m². Segundo a classificação para adultos, esse valor é','faixa de peso normal (18,5 a 24,9).',['baixo peso.','sobrepeso.','obesidade grau I.'],'IMC = peso/altura². 70/(1,75²) = 22,9. Sobrepeso: 25 a 29,9; obesidade: 30 ou mais.'),
+E('saude','Usando a fórmula "220 menos a idade", a frequência cardíaca máxima estimada de um aluno de 20 anos é 200 bpm. A 60% dessa FCmáx, a frequência é de','120 bpm',['100 bpm','140 bpm','160 bpm'],'0,6 x 200 = 120 bpm.'),
+E('saude','Um efeito crônico (adaptação) do treinamento aeróbico regular é','a diminuição da frequência cardíaca de repouso.',['o aumento da pressão arterial de repouso.','a redução da capacidade pulmonar.','a perda de densidade óssea.'],'Bradicardia de repouso é adaptação clássica ao treino aeróbico.'),
+E('saude','O sistema energético predominante em esforços máximos de até cerca de 10 segundos, como uma prova de 100 metros, é o','ATP-CP (fosfagênio)',['oxidativo (aeróbico)','glicolítico lático apenas','de gorduras'],'Esforços curtos e explosivos usam ATP-CP. Depois entra o glicolítico, e em esforços longos predomina o oxidativo.'),
+E('saude','O princípio do treinamento que afirma que o estímulo precisa ser superior ao habitual para gerar adaptação é o da','sobrecarga',['reversibilidade','especificidade','individualidade biológica'],'Sobrecarga: carga acima do nível atual, com progressão. Reversibilidade: perda das adaptações com a interrupção do treino.'),
+E('saude','A perda das adaptações obtidas com o treinamento quando ele é interrompido caracteriza o princípio da','reversibilidade',['sobrecarga','continuidade','especificidade'],'Destreinamento = reversibilidade.'),
+E('saude','Capacidade de produzir muita força em pouco tempo, como em um salto vertical, é denominada','potência (força explosiva)',['flexibilidade','resistência aeróbica','equilíbrio estático'],'Potência = força x velocidade.'),
+E('saude','A conduta inicial indicada para uma entorse de tornozelo durante a aula (protocolo PRICE) é','proteção, repouso, gelo, compressão e elevação do membro.',['massagem forte e retorno imediato à atividade.','calor local e alongamento intenso.','apoiar o peso do corpo para "testar" o tornozelo.'],'PRICE: Protection, Rest, Ice, Compression, Elevation. Encaminhar para avaliação se houver dor intensa ou inchaço.'),
+E('saude','O principal objetivo do aquecimento na aula é','elevar a temperatura corporal e a frequência cardíaca, preparando o organismo e reduzindo risco de lesões.',['cansar o aluno antes da parte principal.','substituir a parte principal da aula.','avaliar o desempenho máximo.'],'Estrutura clássica da aula: aquecimento, parte principal, volta à calma.'),
+E('saude','Em atividades com hipertensos, deve-se evitar principalmente','a manobra de Valsalva (apneia durante esforços intensos).',['caminhadas leves.','exercícios respiratórios.','alongamentos suaves.'],'Prender a respiração durante o esforço eleva muito a pressão arterial.'),
+E('saude','Se um aluno diabético apresentar sudorese, tremores e tontura durante a atividade, suspeita-se de hipoglicemia e a conduta é','interromper a atividade e oferecer carboidrato de rápida absorção.',['aumentar a intensidade do exercício.','oferecer apenas água e continuar.','ignorar, pois é cansaço normal.'],'Sinais de hipoglicemia pedem pausa, ingestão de açúcar/carboidrato simples e acompanhamento.'),
+E('saude','O Programa Academia da Saúde, do Ministério da Saúde, tem como objetivo','promover a saúde por meio de práticas corporais e atividade física em espaços públicos com profissionais qualificados.',['formar atletas de alto rendimento.','oferecer apenas atendimento médico hospitalar.','substituir a educação física escolar.'],'O programa integra o SUS e a Atenção Básica, e o profissional de Educação Física atua nele, como prevê o próprio edital.'),
+// CRESCIMENTO E DESENVOLVIMENTO
+E('cresc','Crescimento e desenvolvimento diferenciam-se porque','crescimento é o aumento quantitativo das dimensões do corpo e desenvolvimento é o processo qualitativo de mudanças funcionais.',['são sinônimos.','crescimento é qualitativo e desenvolvimento, quantitativo.','desenvolvimento ocorre só na adolescência.'],'Crescer = aumentar de tamanho. Desenvolver = adquirir capacidades e funções mais complexas.'),
+E('cresc','Na sequência de fases do desenvolvimento motor proposta por Gallahue, a ordem correta é','reflexiva, rudimentar, habilidades fundamentais e habilidades especializadas.',['especializadas, fundamentais, rudimentar e reflexiva.','rudimentar, reflexiva, especializadas e fundamentais.','fundamentais, reflexiva, rudimentar e especializadas.'],'Os movimentos evoluem de reflexos para movimentos rudimentares, fundamentais e, depois, especializados.'),
+E('cresc','Correr e saltar são habilidades motoras classificadas como','locomotoras',['manipulativas','estabilizadoras','reflexas'],'Locomotoras deslocam o corpo; manipulativas envolvem objetos (arremessar, chutar); estabilizadoras mantêm o equilíbrio (girar, equilibrar-se).'),
+E('cresc','Arremessar, chutar e receber uma bola são habilidades motoras','manipulativas',['locomotoras','estabilizadoras','reflexas'],'Manipulativas são as que lidam com objetos.'),
+E('cresc','O princípio céfalo-caudal do desenvolvimento afirma que o controle motor progride','da cabeça em direção aos pés.',['dos pés para a cabeça.','das extremidades para o centro.','de forma aleatória.'],'Céfalo-caudal: cabeça, tronco e depois membros inferiores. Próximo-distal: do centro do corpo para as extremidades.'),
+E('cresc','O estirão do crescimento na puberdade ocorre, em geral,','mais cedo nas meninas do que nos meninos.',['mais cedo nos meninos do que nas meninas.','na mesma idade nos dois sexos.','apenas na vida adulta.'],'Meninas: cerca de 10 a 12 anos. Meninos: cerca de 12 a 14 anos.'),
+E('cresc','Em turmas escolares, alunos da mesma idade cronológica podem estar em estágios maturacionais bem diferentes. Por isso, o professor deve','evitar comparações e seleção precoce baseadas apenas no desempenho momentâneo.',['formar equipes só com os mais fortes.','ignorar as diferenças individuais.','exigir o mesmo desempenho de todos.'],'Maturação biológica influencia força e tamanho, o que gera vantagem temporária e não necessariamente talento.'),
+E('cresc','A especialização esportiva precoce pode trazer como risco','lesões por sobrecarga, estresse e abandono da prática.',['aumento garantido do desempenho adulto.','melhora da diversidade motora.','redução de qualquer risco de lesão.'],'Recomenda-se ampla vivência motora na infância antes da especialização.'),
+E('cresc','Os jogos simbólicos (faz de conta) predominam, segundo Piaget, na fase','pré-operatória (cerca de 2 a 7 anos).',['sensório-motora (0 a 2 anos), exclusivamente.','operatório-formal (após 12 anos).','vida adulta.'],'Piaget: jogo de exercício (sensório-motor), simbólico (pré-operatório) e de regras (operatório concreto em diante).'),
+// APRENDIZAGEM MOTORA
+E('motora','No modelo de Fitts e Posner, a fase da aprendizagem motora em que o aprendiz comete muitos erros e precisa pensar conscientemente no movimento é a','cognitiva',['associativa','autônoma','reflexa'],'Fases: cognitiva (entender a tarefa), associativa (refinamento) e autônoma (automatização).'),
+E('motora','Na fase autônoma da aprendizagem motora, o aprendiz','executa o movimento de forma automática, com pouca demanda de atenção.',['comete muitos erros grosseiros.','depende da instrução verbal constante.','não consegue repetir o gesto.'],'Autônoma: movimento automatizado, liberando atenção para outras demandas do ambiente.'),
+E('motora','O "conhecimento de resultado" (KR) é um tipo de feedback que informa','o resultado da ação em relação ao objetivo (por exemplo, "a bola passou 20 cm acima do aro").',['apenas como o corpo se moveu durante a execução.','a nota final da disciplina.','o histórico de lesões do aluno.'],'KR = resultado; KP (conhecimento de performance) = qualidade do padrão do movimento.'),
+E('motora','A prática variada e aleatória (interferência contextual alta), em comparação com a prática em blocos, tende a favorecer','a retenção e a transferência da aprendizagem, embora o desempenho durante a aquisição seja pior.',['somente o desempenho imediato.','a aprendizagem de habilidades sem variação.','a ausência de erros.'],'Prática aleatória gera mais esforço cognitivo e melhores efeitos de longo prazo.'),
+E('motora','Aprendizagem motora é definida como','mudança relativamente permanente na capacidade de desempenho, resultante da prática.',['melhora momentânea do desempenho num único dia.','efeito de fadiga e recuperação.','crescimento físico natural.'],'Desempenho pode oscilar; aprendizagem só se confirma por testes de retenção e transferência.'),
+E('motora','A teoria do esquema de Schmidt propõe que o movimento é controlado por','um programa motor generalizado com parâmetros que podem ser ajustados.',['reflexos inatos apenas.','memorização de cada movimento isolado.','instruções verbais constantes do professor.'],'O programa motor generalizado permite adaptar um mesmo padrão a diferentes situações, mudando velocidade, força e amplitude.'),
+E('motora','No método de ensino global, o professor','apresenta a habilidade como um todo, antes de refinar as partes.',['divide o movimento em partes isoladas e só depois junta.','proíbe o jogo.','ensina apenas por meio de testes.'],'No método parcial, ensina-se por partes. No global, parte-se do todo.'),
+// AVALIAÇÃO E PLANEJAMENTO
+E('aval','A avaliação formativa em Educação Física caracteriza-se por','acompanhar o processo de aprendizagem durante as aulas para ajustar o ensino.',['ocorrer só no final do ano, para atribuir nota.','comparar os alunos entre si por testes de aptidão.','excluir quem tem baixo desempenho.'],'Formativa: contínua, orientadora. Somativa: balanço ao final. Diagnóstica: no início, para conhecer o ponto de partida.'),
+E('aval','A avaliação diagnóstica, no início de um período letivo, serve para','identificar os conhecimentos e habilidades prévios dos alunos.',['atribuir a nota final.','classificar os alunos do melhor ao pior.','substituir o planejamento.'],'Diagnóstico orienta o planejamento.'),
+E('aval','Uma avaliação adequada em Educação Física escolar deve','considerar o progresso individual, com critérios claros, e não apenas o desempenho em testes.',['avaliar apenas a aptidão física dos alunos.','punir alunos com menor rendimento.','basear-se somente na presença.'],'Avaliar o processo, as atitudes, os conhecimentos e as habilidades, respeitando as diferenças.'),
+E('aval','No planejamento de ensino, os elementos que definem o que o aluno deve alcançar são os','objetivos',['recursos materiais','horários','uniformes'],'Objetivos orientam conteúdos, métodos e avaliação.'),
+E('aval','Segundo a classificação dos conteúdos (conceitual, procedimental e atitudinal), "executar corretamente um passe de basquete" é um conteúdo','procedimental (saber fazer).',['conceitual (saber sobre).','atitudinal (valores).','nenhum deles.'],'Conceitual: fatos e conceitos. Procedimental: saber fazer. Atitudinal: valores, normas e atitudes.'),
+E('aval','Um exemplo de conteúdo atitudinal em uma aula de Educação Física é','respeitar as regras, os colegas e o adversário.',['conhecer o tempo regulamentar de uma partida.','executar um saque por baixo.','memorizar a data dos Jogos Olímpicos.'],'Atitudinal: valores, atitudes e normas.'),
+// CULTURA E PRÁTICAS CORPORAIS
+E('cult','Para o Coletivo de Autores, são temas da cultura corporal:','jogo, esporte, ginástica, dança e luta (capoeira).',['somente futebol e voleibol.','apenas testes físicos e musculação.','exclusivamente atletismo e natação.'],'Cultura corporal: acervo de práticas historicamente construídas pela humanidade, expressas em jogo, esporte, ginástica, dança, luta e capoeira.'),
+E('cult','A expressão "cultura corporal de movimento" indica que as práticas corporais são','produtos culturais, criados e transformados historicamente, e devem ser tematizados na escola.',['atividades exclusivamente biológicas.','conteúdos sem relação com a sociedade.','válidas somente no esporte de rendimento.'],'Visão cultural das práticas corporais, em vez de apenas biológica ou técnica.'),
+E('cult','A capoeira, manifestação de origem afro-brasileira, foi reconhecida pelo IPHAN como','Patrimônio Cultural Imaterial do Brasil.',['esporte olímpico.','atividade proibida em escolas.','manifestação sem valor cultural.'],'A roda de capoeira e o ofício dos mestres foram registrados como patrimônio imaterial em 2008.'),
+E('cult','A catira (cateretê), com sapateado e palmas, é uma dança popular tradicional do','Centro-Oeste, inclusive de Goiás.',['Sul do país, exclusivamente.','Norte da Europa.','Nordeste, só em escolas.'],'Dança de tradição caipira, presente em Goiás, Minas, São Paulo e Mato Grosso.'),
+E('cult','Em relação à mídia e à sociedade, é papel do professor de Educação Física','promover reflexão crítica sobre padrões corporais, consumo e mídia esportiva.',['incentivar o culto a um único padrão de corpo.','evitar qualquer discussão sobre a sociedade.','estimular a comparação entre alunos pela aparência.'],'Educação Física e sociedade: análise crítica da mercantilização do corpo e do esporte.'),
+E('cult','O handebol é disputado, por equipe, com quantos jogadores em quadra (incluindo o goleiro)?','7',['5','6','11'],'Handebol: 7 (6 de linha e 1 goleiro). Basquete e futsal: 5. Voleibol: 6.'),
+E('cult','Ao tratar de lutas na escola, o foco deve ser','o respeito ao oponente, o autocontrole, as regras e a compreensão cultural, sem estimular a violência.',['o combate real entre os alunos.','a seleção do aluno mais forte.','a eliminação dos mais fracos.'],'Lutas escolares: disputa regrada, valores, história e cultura da modalidade.'),
+// COMPETIÇÃO E COOPERAÇÃO
+E('comp','Nos jogos cooperativos, o princípio central é que','os participantes jogam com os outros, buscando um objetivo comum, sem eliminação.',['vence quem eliminar mais adversários.','só os melhores permanecem no jogo.','o objetivo é humilhar o adversário.'],'Jogos cooperativos (como em Brotto) valorizam a participação de todos.'),
+E('comp','Para promover cooperação e inclusão em atividades competitivas na escola, o professor pode','adaptar regras e valorizar o processo, não apenas o resultado.',['eliminar quem erra primeiro.','escolher sempre os capitães mais habilidosos.','proibir qualquer tipo de jogo.'],'Adaptar regras, trocar equipes, variar papéis e valorizar o esforço reduzem a exclusão.'),
+E('comp','Um problema comum da competição mal conduzida na escola é','a exclusão dos menos habilidosos e a valorização exclusiva da vitória.',['a ausência de regras.','o excesso de cooperação.','a diversidade de práticas.'],'A competição pode ser educativa quando há respeito às regras e ao adversário, e o foco no processo.'),
+E('comp','Segundo a concepção de desporto educacional, a competição na escola deve','ser compreendida como parte da cultura esportiva, tratada de modo crítico, sem hipercompetitividade.',['ser banida do ambiente escolar.','servir apenas para selecionar talentos.','ser o único conteúdo ensinado.'],'Educacional: evita seletividade e hipercompetitividade, e busca formação integral.')
+];
+
+/* ============ BANCO: MATEMÁTICA (gerador) ============ */
+function mk(right,cands,isNum=true){
+  const set=[];
+  const s=new Set([String(right)]);
+  for(const c of cands){const k=String(c);if(!s.has(k)&&(!isNum||c>=0)){s.add(k);set.push(c)}}
+  let i=1;
+  while(set.length<3&&isNum){const c=Math.round((right+i*(i%2?1:-1)*Math.max(1,Math.round(right*0.1)))*100)/100;const k=String(c);if(!s.has(k)&&c>=0){s.add(k);set.push(c)}i++}
+  return set.slice(0,3);
+}
+const mq=(t,q,right,wrongs,e,f=fmt)=>({d:'mat',t,q,r:f(right),w:mk(right,wrongs).map(f),e});
+const G=[
+()=>{const N=pick([40,60,80,100,120,160,200,240,300,400]),p=pick([10,15,20,25,30,40,45,60,75]),a=N*p/100;
+ return mq('Porcentagem',`Em uma escola com ${N} alunos, ${p}% praticam futsal. Quantos alunos praticam futsal?`,a,[N*p/10,N-a,a+p,N/p],`${p}% de ${N} = ${N} x ${p}/100 = ${a}.`)},
+()=>{const b=pick([4,5,6,8,10]),r=pick([100,150,200,250,300]),c=pick([12,15,20,25,30]),a=r*b,ans=r*c;
+ return mq('Regra de três simples',`Um atleta corre ${a} metros em ${b} minutos, em ritmo constante. Quantos metros percorre em ${c} minutos?`,ans,[a+c,ans+r,ans-r,a*c/b+b],`Grandezas diretamente proporcionais: ${a}/${b} = x/${c}, logo x = ${ans}.`)},
+()=>{const n1=pick([2,3,4,6]),k=pick([2,3]),t=pick([6,12,18,24]),n2=n1*k,ans=t/k;
+ return mq('Regra de três inversa',`${n1} professores montam um circuito em ${t} horas. Mantendo o mesmo ritmo, em quantas horas ${n2} professores montam o mesmo circuito?`,ans,[t*k,t+(n2-n1),t-1,t],`Mais professores, menos tempo (inversamente proporcional): ${n1} x ${t} = ${n2} x x, então x = ${ans} horas.`)},
+()=>{const P=pick([80,120,150,200,250,400]),d=pick([10,15,20,25,30]),ans=P*(1-d/100);
+ return mq('Acréscimos e descontos',`Um tênis custa ${money(P)} e está com ${d}% de desconto. Qual o preço final?`,ans,[P-d,P*(1+d/100),P*d/100,P-d*2],`Desconto de ${d}% = ${money(P*d/100)}. Preço final = ${money(P)} - ${money(P*d/100)} = ${money(ans)}.`,money)},
+()=>{const [a,b]=pick([[4,6],[6,8],[10,15],[12,18],[8,12],[9,6],[14,21],[20,30]]),m=lcm(a,b);
+ return mq('MMC',`Dois ciclistas passam pelo ponto de largada a cada ${a} e ${b} minutos, respectivamente. Largaram juntos. Após quantos minutos voltam a se encontrar no ponto de largada?`,m,[gcd(a,b),a*b,m*2,a+b],`Encontro novamente = MMC(${a}, ${b}) = ${m}.`)},
+()=>{const [a,b]=pick([[24,36],[48,60],[30,45],[42,56],[36,48],[54,72]]),g=gcd(a,b);
+ return mq('MDC',`Uma professora tem ${a} meninos e ${b} meninas e quer formar grupos com o mesmo número de alunos, sem sobras e sem misturar meninos e meninas. Qual o maior número possível de alunos por grupo?`,g,[lcm(a,b),a+b,g*2,a-b],`Maior grupo sem sobra = MDC(${a}, ${b}) = ${g}.`)},
+()=>{const [b,d]=pick([[2,3],[3,4],[2,5],[4,6],[3,6],[2,4],[5,6]]),a=rnd(1,b-1),c=rnd(1,d-1);
+ let n=a*d+c*b,m=b*d,g=gcd(n,m);n/=g;m/=g;
+ const f=(x,y)=>y===1?String(x):`${x}/${y}`;
+ const ans=f(n,m);
+ const cand=[f(a+c,b+d),f(a*c,b*d),f(a+c,b),f(a+c,d)];
+ const w=[];const s=new Set([ans]);cand.forEach(x=>{if(!s.has(x)){s.add(x);w.push(x)}});
+ while(w.length<3){const x=f(n+w.length+1,m);if(!s.has(x)){s.add(x);w.push(x)}}
+ return {d:'mat',t:'Frações',q:`Calcule ${a}/${b} + ${c}/${d} e indique o resultado na forma mais simples.`,r:ans,w:w.slice(0,3),e:`MMC dos denominadores = ${b*d/gcd(b,d)}. Resultado: ${a}/${b} + ${c}/${d} = ${a*d+c*b}/${b*d}, simplificando = ${ans}.`}},
+()=>{const x=rnd(2,12),a=rnd(2,9),b=rnd(1,20),c=a*x+b;
+ return mq('Equação do 1º grau',`Resolvendo a equação ${a}x + ${b} = ${c}, obtém-se x igual a`,x,[(c+b)/a,c-b-a,x+1,x+2,a+b],`${a}x = ${c} - ${b} = ${c-b}, então x = ${c-b}/${a} = ${x}.`)},
+()=>{let r1=rnd(1,7),r2=rnd(r1+1,9);
+ return mq('Equação do 2º grau',`Na equação x² - ${r1+r2}x + ${r1*r2} = 0, a maior raiz vale`,r2,[r1,r1+r2,r1*r2,r2+1],`Soma das raízes = ${r1+r2} e produto = ${r1*r2}. As raízes são ${r1} e ${r2}.`)},
+()=>{const l=pick([12,15,18,20,28]),c=pick([20,24,30,35,40]),area=Math.random()<.5;
+ return area?mq('Geometria plana',`Uma quadra retangular mede ${c} m de comprimento por ${l} m de largura. Qual a sua área, em m²?`,l*c,[2*(l+c),l+c,l*c*2,l*c+l],`Área do retângulo = base x altura = ${c} x ${l} = ${l*c} m².`):
+ mq('Geometria plana',`Uma quadra retangular mede ${c} m de comprimento por ${l} m de largura. Um aluno dá uma volta completa ao redor dela. Quantos metros percorre?`,2*(l+c),[l*c,l+c,2*l*c,c*4],`Perímetro = 2 x (${c} + ${l}) = ${2*(l+c)} m.`)},
+()=>{const [a,b,c]=pick([[3,4,5],[6,8,10],[9,12,15],[5,12,13],[8,15,17],[12,16,20]]);
+ return mq('Triângulo retângulo',`Em um triângulo retângulo, os catetos medem ${a} cm e ${b} cm. Qual a medida da hipotenusa, em cm?`,c,[a+b,b-a,c+1,a*b],`Pitágoras: h² = ${a}² + ${b}² = ${a*a+b*b}, logo h = ${c}.`)},
+()=>{const t=rnd(0,3);
+ if(t===0){const v=pick([1.5,2.5,3.5,4.2,0.8]);return mq('Unidades de medida',`${fmt(v)} km equivalem a quantos metros?`,v*1000,[v*100,v*10,v/1000,v*10000],`1 km = 1.000 m, logo ${fmt(v)} x 1.000 = ${fmt(v*1000)} m.`)}
+ if(t===1){const v=pick([1.5,2.5,0.75,3.2]);return mq('Unidades de medida',`Uma garrafa tem ${fmt(v)} litro(s). Quantos mililitros isso representa?`,v*1000,[v*100,v*10,v/1000,v*10000],`1 L = 1.000 mL, logo ${fmt(v)} x 1.000 = ${fmt(v*1000)} mL.`)}
+ if(t===2){const v=pick([90,150,210,45,135]);return mq('Unidades de medida',`${v} minutos equivalem a quantas horas?`,v/60,[v/100,v/6,v*60,v/30],`1 h = 60 min, logo ${v}/60 = ${fmt(v/60)} h.`)}
+ const v=pick([0.75,1.2,2.5,0.4]);return mq('Unidades de medida',`${fmt(v)} kg equivalem a quantos gramas?`,v*1000,[v*100,v*10,v/1000,v*10000],`1 kg = 1.000 g, logo ${fmt(v)} x 1.000 = ${fmt(v*1000)} g.`)},
+()=>{let a=rnd(1,5),b=rnd(1,5);while(a===b)b=rnd(1,5);const k=rnd(10,50),T=(a+b)*k;
+ return mq('Razão e proporção',`Um prêmio de ${money(T)} será dividido entre dois atletas em partes diretamente proporcionais a ${a} e ${b}. Quanto recebe o atleta de parte ${a}?`,a*k,[b*k,T/2,T-a,a*k+b],`Total de partes = ${a+b}. Cada parte = ${T}/${a+b} = ${k}. Parte ${a} = ${a} x ${k} = ${a*k}.`,money)},
+()=>{const a=pick([5,8,10,12]),b=pick([3,4,5]),c=pick([1,2]),V=a*b*c;
+ return mq('Geometria espacial',`Uma piscina em forma de paralelepípedo mede ${a} m de comprimento, ${b} m de largura e ${c} m de profundidade. Sabendo que 1 m³ = 1.000 litros, qual a capacidade da piscina, em litros?`,V*1000,[V,V*100,V*10,2*(a*b+a*c+b*c)*1000],`Volume = ${a} x ${b} x ${c} = ${V} m³ = ${fmt(V*1000)} L.`)},
+()=>{let v;do{v=[rnd(5,10),rnd(5,10),rnd(5,10),rnd(5,10)];const last=5*Math.round((v.reduce((x,y)=>x+y,0)+7)/5)-v.reduce((x,y)=>x+y,0);v.push(last)}while(v[4]<5||v[4]>10||v.reduce((x,y)=>x+y,0)%5!==0);
+ const s=v.reduce((x,y)=>x+y,0),m=s/5;
+ return mq('Média e gráficos',`Um aluno obteve as notas ${v.join(', ')} em cinco avaliações de Educação Física. Qual a sua média aritmética?`,m,[Math.max(...v),m+1,m-1,s],`Média = soma/quantidade = ${s}/5 = ${m}.`)},
+()=>{const S=pick([8,10,12,14,16,18]),D=pick([2,4,6]),x=(S+D)/2;
+ return mq('Sistema de equações do 1º grau',`Em uma partida, os dois times marcaram ${S} pontos juntos, e o time vencedor marcou ${D} pontos a mais que o perdedor. Quantos pontos fez o time vencedor?`,x,[x-D,S-D,S/2-1,D],`x + y = ${S} e x - y = ${D}. Somando: 2x = ${S+D}, logo x = ${x}.`)},
+()=>{const mods=shuffle(['Futsal','Vôlei','Basquete','Handebol']);const sets=pick([[80,60,40,20],[70,50,50,30],[100,40,40,20],[60,60,50,30]]);const k=rnd(0,3);
+ const tab=mods.map((m,i)=>`${m}: ${sets[i]} alunos`).join(' | ');
+ return mq('Gráficos e tabelas',`A tabela mostra as modalidades escolhidas pelos alunos: ${tab}. Que porcentagem do total optou por ${mods[k]}?`,sets[k]/2,[sets[k],sets[k]/4,sets[k]/200,100-sets[k]/2],`Total = 200 alunos. ${sets[k]}/200 = ${fmt(sets[k]/2)}%.`,v=>fmt(v)+'%')},
+()=>{const n=pick([3,4,5,6]),p=pick([7.5,12.9,8.75,14.3,9.2]),N=pick([100,200,50]);if(n*p>=N)return G[17]();const t=Math.round(n*p*100)/100,ans=Math.round((N-t)*100)/100;
+ return mq('Sistema monetário',`Maria comprou ${n} itens de ${money(p)} cada e pagou com uma nota de ${money(N)}. Qual foi o troco?`,ans,[t,N-p,N+t,N-n],`Gasto = ${n} x ${money(p)} = ${money(t)}. Troco = ${money(N)} - ${money(t)} = ${money(ans)}.`,money)},
+()=>{const p=pick([10,20,25,30,50]),base=pick([100,200]),ans=base*(1-p*p/10000);
+ return mq('Acréscimos e descontos',`Um produto de ${money(base)} sofreu aumento de ${p}% e, em seguida, desconto de ${p}% sobre o novo preço. Qual o preço final?`,ans,[base,base*(1+p/100),base*(1-p/100),base-2*p],`Fator: (1+${p/100}) x (1-${p/100}) = ${fmt(1-p*p/10000)}. Preço final = ${money(ans)}. Aumentos e descontos percentuais não se anulam.`,money)}
+];
+
+/* ============ MONTAGEM DE QUESTÕES ============ */
+let uid=0;
+function build(src,id){
+  const opts=shuffle([{t:src.r,ok:true},...src.w.map(t=>({t,ok:false}))]);
+  return {id,d:src.d,t:src.t,q:src.q,opts,e:src.e,sel:null,uid:++uid};
+}
+function seenSet(){try{return new Set(JSON.parse(localStorage.getItem('ef_seen')||'[]'))}catch(e){return new Set()}}
+function saveSeen(s){try{localStorage.setItem('ef_seen',JSON.stringify([...s]))}catch(e){}}
+function chooseStatic(arr,prefix,n,filter){
+  const seen=seenSet();
+  let pool=arr.map((q,i)=>({q,id:prefix+i})).filter(x=>!filter||filter(x.q));
+  let fresh=pool.filter(x=>!seen.has(x.id));
+  if(fresh.length<n){pool.forEach(x=>seen.delete(x.id));saveSeen(seen);fresh=pool}
+  // garante variedade de tópicos na seleção
+  fresh=shuffle(fresh);
+  const out=[],topics={};
+  for(const x of fresh){if(out.length>=n)break;if((topics[x.q.t]||0)<2){out.push(x);topics[x.q.t]=(topics[x.q.t]||0)+1}}
+  for(const x of fresh){if(out.length>=n)break;if(!out.includes(x))out.push(x)}
+  return out.map(x=>build(x.q,x.id));
+}
+function genMath(n){
+  const idx=shuffle(G.map((_,i)=>i));
+  const out=[];
+  for(const i of idx){if(out.length>=n)break;const q=G[i]();if(q)out.push(build(q,'m'+i))}
+  return out;
+}
+
+/* ============ RENDER ============ */
+const DNAME={pt:'Língua Portuguesa',mat:'Matemática',esp:'Conhecimentos Específicos (Educação Física)'};
+function qHTML(q,n,mode,ctx){
+  const o=q.opts.map((op,i)=>{
+    let cls='opt',dis='';
+    if(mode==='review'){dis='disabled';if(op.ok)cls+=' ok';else if(q.sel===i)cls+=' bad'}
+    else if(mode==='instant'&&q.sel!==null){dis='disabled';if(op.ok)cls+=' ok';else if(q.sel===i)cls+=' bad'}
+    else if(q.sel===i)cls+=' sel';
+    return `<button class="${cls}" ${dis} onclick="${ctx}.pick(${q.uid},${i})"><b>${L[i]})</b><span>${op.t}</span></button>`;
+  }).join('');
+  let ex='';
+  if(mode==='review'){
+    const ok=q.sel!==null&&q.opts[q.sel].ok;
+    ex=`<div class="exp"><b>${q.sel===null?'Não respondida.':ok?'Acertou.':'Errou.'}</b> ${q.e}</div>`;
+  }else if(mode==='instant'&&q.sel!==null){
+    ex=`<div class="exp"><b>${q.opts[q.sel].ok?'Correto.':'Incorreto.'}</b> ${q.e}</div>`;
+  }
+  const tl=q.d==='esp'?T_ESP[q.t]:q.t;
+  return `<div class="q" id="q${q.uid}"><div class="n"><span class="tag">${tl}</span>Questão ${n}</div><div class="t">${q.q}</div>${o}${ex}</div>`;
+}
+
+/* ============ SIMULADO ============ */
+const SIM={qs:[],t0:0,timer:null,done:false,
+  pick(uid,i){if(this.done)return;const q=this.qs.find(x=>x.uid===uid);q.sel=(q.sel===i?null:i);this.render()},
+  render(){
+    const answered=this.qs.filter(q=>q.sel!==null).length;
+    let n=0,html=`<div class="bar"><div class="row" style="justify-content:space-between"><div><b id="simProg">${answered}/${this.qs.length}</b> respondidas · <span id="clock">00:00:00</span> de 03:00:00</div><div class="row"><button class="btn" onclick="SIM.finish()">Finalizar</button><button class="btn sec" onclick="SIM.restart()">Nova prova</button></div></div><div class="nav">${this.qs.map((q,i)=>`<a href="#q${q.uid}" class="${q.sel!==null?'done':''}">${i+1}</a>`).join('')}</div></div>`;
+    let last='';
+    for(const q of this.qs){n++;if(q.d!==last){html+=`<div class="disc">${DNAME[q.d]}</div>`;last=q.d}html+=qHTML(q,n,'exam','SIM')}
+    $('#simBody').innerHTML=html;this.tick();
+  },
+  tick(){const c=$('#clock');if(!c)return;const s=Math.floor((Date.now()-this.t0)/1000);const p=x=>String(x).padStart(2,'0');c.textContent=`${p(Math.floor(s/3600))}:${p(Math.floor(s/60)%60)}:${p(s%60)}`},
+  start(){
+    this.qs=[...chooseStatic(PT,'p',10),...genMath(10),...chooseStatic(ESP,'e',20)];
+    const seen=seenSet();this.qs.filter(q=>/^[pe]/.test(q.id)).forEach(q=>seen.add(q.id));saveSeen(seen);
+    this.done=false;this.t0=Date.now();clearInterval(this.timer);this.timer=setInterval(()=>this.tick(),1000);
+    $('#simIntro').classList.add('hide');this.render();window.scrollTo(0,0);
+  },
+  restart(){if(!this.done&&this.qs.some(q=>q.sel!==null)&&!confirm('Descartar esta prova e gerar uma nova?'))return;this.start()},
+  finish(){
+    const un=this.qs.filter(q=>q.sel===null).length;
+    if(un&&!confirm(`Há ${un} questão(ões) sem resposta. Finalizar mesmo assim?`))return;
+    this.done=true;clearInterval(this.timer);
+    const w={pt:2,mat:2,esp:3},res={pt:0,mat:0,esp:0},tot={pt:0,mat:0,esp:0},err={};
+    this.qs.forEach(q=>{tot[q.d]++;const ok=q.sel!==null&&q.opts[q.sel].ok;if(ok)res[q.d]++;else{const k=q.d==='esp'?T_ESP[q.t]:DNAME[q.d]+': '+q.t;err[k]=(err[k]||0)+1}});
+    const pts=k=>res[k]*w[k],total=pts('pt')+pts('mat')+pts('esp');
+    const zero=['pt','mat','esp'].some(k=>res[k]===0);
+    const ok=total>=50&&!zero;
+    const secs=Math.floor((Date.now()-this.t0)/1000),tm=`${Math.floor(secs/3600)}h ${Math.floor(secs/60)%60}min`;
+    const errs=Object.entries(err).sort((a,b)=>b[1]-a[1]);
+    let html=`<div class="card"><div class="score">${total.toFixed(1).replace('.',',')} <span class="mut" style="font-size:18px">/ 100</span></div>
+    <p><span class="pill ${ok?'ok':'bad'}">${ok?'APROVADO nos critérios da prova objetiva':zero?'ELIMINADO: disciplina zerada':'ABAIXO DA NOTA MÍNIMA (50)'}</span> <span class="mut">· tempo: ${tm}</span></p>
+    <table><tr><th>Disciplina</th><th>Acertos</th><th>Pontos</th></tr>
+    ${['pt','mat','esp'].map(k=>`<tr><td>${DNAME[k]}</td><td>${res[k]}/${tot[k]}</td><td>${pts(k)}/${tot[k]*w[k]}</td></tr>`).join('')}
+    <tr><th>Total</th><th>${res.pt+res.mat+res.esp}/40</th><th>${total}/100</th></tr></table>
+    ${errs.length?`<h3>Onde você mais errou (revise no guia)</h3><ul>${errs.map(([k,v])=>`<li>${k}: ${v} erro(s)</li>`).join('')}</ul>`:'<p><b>Gabarito perfeito.</b></p>'}
+    <div class="row" style="margin-top:12px"><button class="btn" onclick="SIM.start()">Gerar nova prova</button><button class="btn sec" onclick="go('guia')">Revisar guia</button></div></div>`;
+    let n=0,last='';
+    for(const q of this.qs){n++;if(q.d!==last){html+=`<div class="disc">${DNAME[q.d]}</div>`;last=q.d}html+=qHTML(q,n,'review','SIM')}
+    html+=`<div class="row"><button class="btn" onclick="SIM.start()">Gerar nova prova</button></div>`;
+    $('#simBody').innerHTML=html;window.scrollTo(0,0);
+  }};
+function startSim(){SIM.start()}
+function seenInfo(){const s=seenSet();$('#seenInfo').textContent=`Questões fixas já vistas: ${[...s].length} de ${PT.length+ESP.length}`}
+
+/* ============ TREINO ============ */
+const TR={qs:[],pick(uid,i){const q=this.qs.find(x=>x.uid===uid);if(q.sel!==null)return;q.sel=i;this.render()},
+ render(){let n=0;const right=this.qs.filter(q=>q.sel!==null&&q.opts[q.sel].ok).length,ans=this.qs.filter(q=>q.sel!==null).length;
+  $('#trBody').innerHTML=`<div class="card"><b>${right}</b> acertos em <b>${ans}</b> respondidas de ${this.qs.length} <button class="btn sec" style="margin-left:10px" onclick="startTreino()">Novas questões</button></div>`+this.qs.map(q=>qHTML(q,++n,'instant','TR')).join('')}};
+function startTreino(){
+  const v=$('#trTopic').value,n=+$('#trQty').value;let qs=[];
+  const key=Object.keys(T_ESP).find(k=>k===v);
+  if(key)qs=shuffle(ESP.map((q,i)=>({q,id:'e'+i})).filter(x=>x.q.t===key)).slice(0,n).map(x=>build(x.q,x.id));
+  else if(v==='pt')qs=shuffle(PT.map((q,i)=>({q,id:'p'+i}))).slice(0,n).map(x=>build(x.q,x.id));
+  else if(v==='mat')qs=genMath(Math.min(n,G.length));
+  else qs=shuffle(ESP.map((q,i)=>({q,id:'e'+i}))).slice(0,n).map(x=>build(x.q,x.id));
+  TR.qs=qs;TR.render();
+}
+(function(){
+  const s=$('#trTopic');
+  s.innerHTML=`<option value="all">Específicos: todos os tópicos</option>`+Object.entries(T_ESP).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')+`<option value="pt">Língua Portuguesa</option><option value="mat">Matemática</option>`;
+  seenInfo();
+})();
+
+/* ============ GUIA DE ESTUDO ============ */
+const GUIA=[
+['Específicos',[
+['1. Ética e legislação profissional (Código de Ética, resoluções)',`<ul>
+<li><b>Lei 9.696/1998</b>: regulamenta a profissão e cria <b>CONFEF</b> e <b>CREFs</b>. Só atua quem tem registro no CREF.</li>
+<li><b>Resolução CONFEF 307/2015</b>: Código de Ética. Pilares: respeito à dignidade humana, não discriminação, segurança do beneficiário, sigilo profissional, atualização técnica, não ao uso de práticas sem comprovação.</li>
+<li>Os conselhos <b>fiscalizam, orientam e disciplinam</b>. Atenção a pegadinhas trocando CONFEF por MEC, CNE ou COB.</li>
+<li>Resoluções vigentes: leia a lista de resoluções do CONFEF sobre intervenção profissional, registro e competências, caso o edital peça especificamente.</li></ul>`],
+['2. Histórico da Educação Física e aspectos sócio-históricos',`<ul>
+<li><b>Antiguidade</b>: jogos em Olímpia (776 a.C.); Esparta com treino militar; Atenas com formação equilibrada de corpo e mente.</li>
+<li><b>Séc. XIX</b>: métodos ginásticos europeus (alemão, sueco, francês). Foco em disciplina, correção e saúde.</li>
+<li><b>Brasil</b>: Rui Barbosa (1882) defende a ginástica na escola. <b>Higienismo</b> (saúde e eugenia), <b>Militarismo</b> (cidadão-soldado), <b>Pedagogicismo</b> (EF como educação integral, anos 1930 a 1945), <b>Competitivismo/Esportivismo</b> (anos 1970).</li>
+<li><b>Anos 1980</b>: movimento renovador, críticas ao tecnicismo e novas abordagens.</li>
+<li><b>Jogos Olímpicos modernos</b>: Pierre de Coubertin, Atenas, 1896.</li>
+<li><b>Dica de prova</b>: associe cada fase a uma "palavra-chave": saúde, disciplina, rendimento, crítica.</li></ul>`],
+['3. Fundamentos didático-pedagógicos e abordagens',`<table><tr><th>Abordagem</th><th>Ideia central</th><th>Autores/marcos</th></tr>
+<tr><td>Desenvolvimentista</td><td>Desenvolvimento motor, habilidades básicas, fases da criança</td><td>Tani et al. (1988)</td></tr>
+<tr><td>Psicomotora</td><td>Movimento como meio de desenvolver aspectos cognitivos, afetivos e motores</td><td>Le Boulch</td></tr>
+<tr><td>Construtivista-interacionista</td><td>Jogo e brincadeira, construção do conhecimento</td><td>João Batista Freire</td></tr>
+<tr><td>Crítico-superadora</td><td>Cultura corporal, visão marxista, conteúdo historicizado</td><td>Coletivo de Autores (1992)</td></tr>
+<tr><td>Crítico-emancipatória</td><td>Se-movimentar, linguagem, emancipação do sujeito</td><td>Elenor Kunz</td></tr>
+<tr><td>Saúde renovada</td><td>Aptidão física relacionada à saúde, estilo de vida ativo</td><td>Guedes, Nahas</td></tr>
+<tr><td>Aulas abertas</td><td>Participação dos alunos nas decisões</td><td>Hildebrandt e Laging</td></tr>
+<tr><td>PCN</td><td>Cultura corporal de movimento, inclusão, diversidade</td><td>MEC (1997/1998)</td></tr></table>`],
+['4. Educação Física enquanto linguagem, competências e habilidades (BNCC)',`<ul>
+<li>BNCC: EF na área de <b>Linguagens</b>. As práticas corporais são formas de <b>expressão e comunicação</b> de significados culturais.</li>
+<li><b>Competência</b> = mobilizar conhecimentos, habilidades, atitudes e valores para resolver demandas da vida.</li>
+<li><b>6 unidades temáticas</b>: Brincadeiras e jogos; Esportes; Ginásticas; Danças; Lutas; Práticas corporais de aventura.</li>
+<li><b>Esportes (lógica interna)</b>: marca (atletismo, natação); precisão (bocha, golfe); técnico-combinatório (ginástica artística, patinação); rede/quadra dividida ou parede (vôlei, tênis); campo e taco (beisebol, críquete); invasão ou territorial (basquete, futsal, handebol); combate (judô, esgrima).</li>
+<li><b>Ginásticas</b>: geral, de condicionamento físico, de conscientização corporal.</li>
+<li><b>Aventura</b>: urbana (skate, parkour) e na natureza (trilha, orientação, escalada).</li>
+<li>Dimensões do conhecimento: experimentação, uso e apropriação, fruição, reflexão sobre a ação, construção de valores, análise, compreensão e protagonismo comunitário.</li></ul>`],
+['5. Avaliação e planejamento',`<ul>
+<li><b>Diagnóstica</b> (início), <b>formativa</b> (durante, contínua), <b>somativa</b> (balanço final).</li>
+<li>Em EF, avaliar processo, participação, atitudes e conhecimentos. Não basear só em desempenho/aptidão comparado.</li>
+<li>Conteúdos: <b>conceitual</b> (saber sobre), <b>procedimental</b> (saber fazer), <b>atitudinal</b> (valores e atitudes).</li>
+<li>Planejamento: objetivos, conteúdos, procedimentos/metodologia, recursos e avaliação. Estrutura da aula: aquecimento, parte principal, volta à calma.</li></ul>`],
+['6. Política educacional e legislação',`<ul>
+<li><b>LDB 9.394/1996, art. 26 §3º</b>: EF é componente curricular <b>obrigatório</b> da educação básica, integrado à proposta pedagógica. Facultativa em hipóteses legais (jornada de trabalho igual ou superior a 6 h, maior de 30 anos, serviço militar, prole, etc.).</li>
+<li><b>CF/88 art. 217</b>: dever do Estado fomentar práticas desportivas formais e não formais, direito de cada um.</li>
+<li><b>Lei Pelé (9.615/1998)</b>: manifestações do desporto: <b>educacional</b>, <b>de participação</b>, <b>de rendimento</b> e <b>de formação</b>.</li>
+<li><b>Inclusão</b>: Lei 13.146/2015 e política de educação especial inclusiva. Adaptar regras, materiais e espaços.</li></ul>`],
+['7. Atividade física e saúde',`<ul>
+<li><b>Atividade física</b>: movimento com gasto acima do repouso. <b>Exercício</b>: planejado, estruturado e repetitivo.</li>
+<li><b>OMS 2020</b>: adultos 150 a 300 min/semana moderada (ou 75 a 150 vigorosa) + força 2 dias ou mais. Crianças e adolescentes: média de 60 min/dia moderada a vigorosa. Idosos: multicomponente com equilíbrio, 3 dias ou mais.</li>
+<li><b>Aptidão relacionada à saúde</b>: cardiorrespiratória, força/resistência muscular, flexibilidade, composição corporal. (Velocidade, agilidade e potência = desempenho.)</li>
+<li><b>IMC</b> = peso/altura². Adultos: abaixo de 18,5 baixo peso; 18,5 a 24,9 normal; 25 a 29,9 sobrepeso; 30 ou mais obesidade.</li>
+<li><b>FCmáx</b> estimada = 220 - idade. Zona de treino = percentual da FCmáx.</li>
+<li><b>Sistemas energéticos</b>: ATP-CP (até cerca de 10 s), glicolítico (10 s a 2 min aprox.), oxidativo (longa duração).</li>
+<li><b>Princípios do treinamento</b>: individualidade biológica, adaptação, sobrecarga, continuidade, interdependência volume-intensidade, especificidade, reversibilidade.</li>
+<li>Urgências: entorse = PRICE. Hipoglicemia = carboidrato rápido. Hipertensos = evitar Valsalva. Academia da Saúde e ESF: práticas corporais no SUS.</li></ul>`],
+['8. Crescimento e desenvolvimento',`<ul>
+<li><b>Crescimento</b> = quantitativo (altura, peso). <b>Desenvolvimento</b> = qualitativo (funções, capacidades). <b>Maturação</b> = ritmo biológico individual.</li>
+<li><b>Gallahue</b>: fase reflexiva, rudimentar, habilidades motoras fundamentais (cerca de 2 a 7 anos), habilidades especializadas.</li>
+<li>Habilidades: <b>locomotoras</b> (correr, saltar), <b>manipulativas</b> (arremessar, chutar, receber), <b>estabilizadoras</b> (equilibrar, girar).</li>
+<li>Direções: <b>céfalo-caudal</b> (cabeça para pés) e <b>próximo-distal</b> (centro para extremidades).</li>
+<li>Puberdade: estirão mais cedo nas meninas. Cuidado com seleção precoce e especialização esportiva precoce.</li>
+<li>Piaget: jogo de exercício, simbólico (2 a 7 anos), de regras.</li></ul>`],
+['9. Aprendizagem motora',`<ul>
+<li><b>Aprendizagem</b> = mudança relativamente permanente na capacidade de desempenho. Medida por retenção e transferência.</li>
+<li><b>Fitts e Posner</b>: cognitiva (entende a tarefa, muitos erros), associativa (refina), autônoma (automático).</li>
+<li><b>Feedback</b>: KR (resultado) e KP (qualidade do movimento).</li>
+<li><b>Prática</b>: em blocos x aleatória (maior interferência contextual favorece retenção e transferência); constante x variada; parcial x global.</li>
+<li><b>Schmidt</b>: programa motor generalizado com parâmetros ajustáveis (teoria do esquema).</li></ul>`],
+['10. Cultura, práticas corporais e cultura corporal de movimento',`<ul>
+<li><b>Cultura corporal</b> (Coletivo de Autores): jogo, esporte, ginástica, dança, luta, capoeira como produção histórica da humanidade.</li>
+<li><b>Cultura corporal de movimento</b>: práticas corporais como produto cultural, tematizadas na escola.</li>
+<li>Valorizar manifestações regionais e populares: capoeira (patrimônio imaterial, IPHAN 2008), catira/cateretê (Centro-Oeste, Goiás), danças e jogos populares.</li>
+<li>Lutas na escola: respeito ao oponente, regras e controle. Nunca estimular violência.</li>
+<li>EF e sociedade: crítica à mídia esportiva, padrões de corpo e consumo.</li></ul>`],
+['11. Competição e cooperação no cenário escolar',`<ul>
+<li>Competição bem conduzida: regras, respeito, foco no processo. Mal conduzida: exclusão e hipercompetitividade.</li>
+<li><b>Jogos cooperativos</b>: objetivo comum, sem eliminação, todos participam.</li>
+<li>Estratégias: adaptar regras, trocar equipes, variar papéis, valorizar o esforço.</li>
+<li>Desporto educacional (Lei Pelé): evita seletividade e hipercompetitividade.</li></ul>`]
+]],
+['Língua Portuguesa (10 questões)',[
+['Roteiro de estudo',`<ul>
+<li><b>Interpretação e textualidade</b>: coesão (conectivos, pronomes) x coerência (lógica). Tipos: narrativo, descritivo, expositivo, argumentativo, injuntivo. Gêneros textuais.</li>
+<li><b>Gramática normativa</b>: ortografia, acentuação (oxítonas, paroxítonas, proparoxítonas, hiatos), classes de palavras, estrutura e formação de palavras.</li>
+<li><b>Sintaxe</b>: sujeito e predicado, concordância verbal e nominal, regência verbal e nominal, crase, colocação pronominal, pontuação.</li>
+<li><b>Linguagem</b>: variação linguística (diatópica, diastrática, diafásica, diacrônica), verbal e não verbal, funções da linguagem, figuras de linguagem, sinonímia, antonímia, polissemia, ambiguidade.</li></ul>`],
+['Regras que mais caem',`<ul>
+<li><b>Crase</b> = preposição "a" + artigo "a". Não há crase antes de verbo, pronome pessoal, palavra masculina. Teste: troque por palavra masculina (ao).</li>
+<li><b>Haver</b> (existir) e <b>fazer</b> (tempo) são impessoais: ficam no singular.</li>
+<li><b>Assistir</b> (ver): a. <b>Preferir</b>: a, sem "mais" e sem "do que". <b>Obedecer</b>, <b>responder</b>: a.</li>
+<li><b>Meio</b> (advérbio) e <b>bastante</b> (advérbio) não variam. <b>Anexo</b> e <b>obrigado</b> concordam com o referente.</li>
+<li><b>Vírgula</b>: não separar sujeito do verbo. Separar aposto, vocativo, adjunto adverbial deslocado.</li>
+<li><b>Próclise</b> atraída por negação, advérbio, pronome relativo e conjunção subordinativa.</li></ul>`]
+]],
+['Matemática (10 questões)',[
+['Roteiro de estudo e fórmulas',`<ul>
+<li><b>Porcentagem</b>: p% de N = N x p/100. Desconto: x(1 - i). Acréscimo: x(1 + i). Sucessivos: multiplique os fatores.</li>
+<li><b>MMC</b>: eventos que se repetem juntos. <b>MDC</b>: dividir em grupos iguais, maior tamanho possível.</li>
+<li><b>Regra de três</b>: direta (mesmo sentido), inversa (sentidos opostos, multiplica em linha).</li>
+<li><b>Frações</b>: tire o MMC dos denominadores antes de somar. Simplifique no fim.</li>
+<li><b>Equação 1º grau</b>: isole x. <b>Equação 2º grau</b>: soma = -b/a, produto = c/a; Bhaskara: x = (-b ± √Δ) / 2a, com Δ = b² - 4ac.</li>
+<li><b>Sistemas</b>: soma e diferença (x + y e x - y).</li>
+<li><b>Geometria</b>: área do retângulo b x h; triângulo b x h/2; círculo π r²; perímetro do retângulo 2(b + h); Pitágoras a² = b² + c²; volume do paralelepípedo a x b x c; 1 m³ = 1.000 L.</li>
+<li><b>Medidas</b>: km, m, cm, mm (x10 ou x1.000); h, min, s (x60); kg, g (x1.000); L, mL (x1.000).</li>
+<li><b>Média</b>: soma dos valores/quantidade. Leia tabelas e gráficos com cuidado com a unidade.</li></ul>`]
+]]
+];
+(function(){
+  let h='';
+  GUIA.forEach(([disc,items],gi)=>{
+    h+=`<div class="disc">${disc}</div>`;
+    items.forEach(([t,c])=>{h+=`<details${gi===0&&t.startsWith('1.')?' open':''}><summary>${t}</summary><div class="in">${c}</div></details>`});
+  });
+  h+=`<div class="card"><b>Próximo passo:</b> faça o Treino por tópico nos temas fracos e depois o Simulado. <button class="btn" style="margin-left:8px" onclick="go('treino')">Ir para o treino</button></div>`;
+  $('#guiaBody').innerHTML=h;
+})();
+</script>
+</body>
+</html>
